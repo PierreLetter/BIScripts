@@ -1,9 +1,11 @@
-﻿IF OBJECT_ID('dbo.sp_IndexFragmentation') IS NULL
+﻿USE Master
+GO
+
+IF OBJECT_ID('dbo.sp_IndexFragmentation') IS NULL
   EXEC ('CREATE PROCEDURE dbo.sp_IndexFragmentation AS RETURN 0;');
 GO
 
 ALTER PROCEDURE [dbo].[sp_IndexFragmentation]
-WITH RECOMPILE
 AS
     SELECT dbschemas.[name] as 'Schema',
     dbtables.[name] as 'Table',
