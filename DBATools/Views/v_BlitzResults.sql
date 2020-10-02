@@ -15,10 +15,11 @@ SELECT ISNULL(Alias, BlitzResults.[ServerName]) as Alias
 	  ,[BlitzResults].[ServerName]
   FROM [BlitzResults]
   LEFT OUTER JOIN BlitzServerMapping ON BlitzServerMapping.[ServerName] = [BlitzResults].[ServerName]
-  WHERE DATEDIFF(d,Checkdate,GETDATE()) < 1
+  WHERE DATEDIFF(d,CheckDate,GETDATE()) < 1
   AND Priority > 0
   AND (
 	Priority < 200
+	OR FindingsGroup IN ('Performance','Monitoring','Reliability')
 	OR Finding = 'Data Size'
 	OR Finding Like 'Drive % Space'
 	)
